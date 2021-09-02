@@ -83,23 +83,6 @@ public class GameManager : MonoBehaviour
             fakeHeader.text = "Aceitação da vacina está em alta!";
             fakeNews.text = "Brasileiros confiam na vacina e a aceitação é mais que suficiente para imunidade(Instituto Pamonha).";
         }
-        else if(score == 20)
-        {
-            anim.Play("AnswerAnim");
-
-            whitchZoomed = 2;
-
-            imageHolders[0].sprite = images[1];
-            imageHolders[1].sprite = images[1];
-
-            trueSite.text = "https://g1.globo.com";
-            trueHeader.text = "";
-            trueNews.text = "";
-
-            fakeSite.text = "https://g1.globo.news";
-            fakeHeader.text = "";
-            fakeNews.text = "";
-        }
         else if(score == 30)
         {
             anim.Play("AnswerAnim");
@@ -108,6 +91,23 @@ public class GameManager : MonoBehaviour
 
             imageHolders[0].sprite = images[2];
             imageHolders[1].sprite = images[2];
+
+            trueSite.text = "https://noticias.uol.com.br";
+            trueHeader.text = "";
+            trueNews.text = "";
+
+            fakeSite.text = "https://g1.globo.news";
+            fakeHeader.text = "";
+            fakeNews.text = "";
+        }
+        else if(score == 20)
+        {
+            anim.Play("AnswerAnim");
+
+            whitchZoomed = 2;
+
+            imageHolders[0].sprite = images[1];
+            imageHolders[1].sprite = images[1];
 
             trueSite.text = "https://cnnbrasil.com";
             trueHeader.text = "Covid-19: agosto foi o mês com mortes de Brasil";

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Config
   - Info
+  - Info1
   layers:
   - Default
   - TransparentFX

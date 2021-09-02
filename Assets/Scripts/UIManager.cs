@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    GameObject configMenu, infoMenu;
+    GameObject configMenu, infoMenu, infoMenu1;
 
     public bool canAnimateConfig = false, canAnimateAbout = false;
 
@@ -16,6 +16,9 @@ public class UIManager : MonoBehaviour
 
         infoMenu = GameObject.FindGameObjectWithTag("Info");
         infoMenu.SetActive(false);
+
+        infoMenu1 = GameObject.FindGameObjectWithTag("Info1");
+        infoMenu1.SetActive(false);
     }
 
     public void GameStart()
@@ -26,6 +29,11 @@ public class UIManager : MonoBehaviour
     public void About()
     {
         infoMenu.SetActive(true);
+    }
+
+    public void FowardSeta()
+    {
+        infoMenu1.SetActive(true);
         canAnimateAbout = true;
     }
 
