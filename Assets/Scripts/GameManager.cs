@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public Button[] button;
     public Sprite[] images;
 
-    public GameObject zoom;
+    public GameObject[] zoom;
 
     public Text trueSite, fakeSite, trueHeader, fakeHeader, trueNews, fakeNews, zoomSite1, zoomSite2, zoomSite3, zoomHeader1, zoomHeader2, zoomHeader3, zoomNews1, zoomNews2, zoomNews3; //Temporary
 
@@ -58,7 +58,10 @@ public class GameManager : MonoBehaviour
         score += 10;
         ModifyScore();
 
-        zoom.SetActive(false);
+        foreach(GameObject element in zoom)
+        {
+            element.SetActive(false);
+        }
 
         if(score == 10)
         {
@@ -71,9 +74,9 @@ public class GameManager : MonoBehaviour
             fakeHeader.color = Color.white;
             fakeHeader.fontSize = 14;
             fakeNews.color = Color.white;
-            zoomHeader.color = Color.white;
-            zoomHeader.fontSize = 14;
-            zoomNews.color = Color.white;
+            zoomHeader1.color = Color.white;
+            zoomHeader1.fontSize = 14;
+            zoomNews1.color = Color.white;
 
             trueSite.text = "https://noticias.uol.com.br";
             trueHeader.text = "Aceitação da vacina é insuficiente!";
@@ -191,11 +194,11 @@ public class GameManager : MonoBehaviour
 
         imageHolders[2].sprite = imageHolders[0].sprite;
 
-        zoomSite.text = trueSite.text;
-        zoomHeader.text = trueHeader.text;
-        zoomNews.text = trueNews.text;
+        zoomSite1.text = trueSite.text;
+        zoomHeader1.text = trueHeader.text;
+        zoomNews1.text = trueNews.text;
 
-        zoom.SetActive(true);
+        zoom[0].SetActive(true);
     }
 
     public void Image2Pressed()
@@ -204,11 +207,11 @@ public class GameManager : MonoBehaviour
 
         imageHolders[2].sprite = imageHolders[1].sprite;
 
-        zoomSite.text = fakeSite.text;
-        zoomHeader.text = fakeHeader.text;
-        zoomNews.text = fakeNews.text;
+        zoomSite1.text = fakeSite.text;
+        zoomHeader1.text = fakeHeader.text;
+        zoomNews1.text = fakeNews.text;
 
-        zoom.SetActive(true);
+        zoom[0].SetActive(true);
     }
 
     void Start()
@@ -222,13 +225,13 @@ public class GameManager : MonoBehaviour
     {
         TickTimer();
 
-        if(zoom.activeSelf)
+        /*if(zoom.activeSelf)
         {
             button[2].interactable = true;
         }
         else
         {
             button[2].interactable = false;
-        }
+        }*/
     }
 }

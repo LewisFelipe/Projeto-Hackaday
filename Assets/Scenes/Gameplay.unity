@@ -1368,7 +1368,7 @@ MonoBehaviour:
   zoomHeader: {fileID: 1457900236}
   trueNews: {fileID: 1846243929}
   fakeNews: {fileID: 364011957}
-  ZoomNews: {fileID: 557850970}
+  zoomNews: {fileID: 557850970}
 --- !u!4 &845460020
 Transform:
   m_ObjectHideFlags: 0
