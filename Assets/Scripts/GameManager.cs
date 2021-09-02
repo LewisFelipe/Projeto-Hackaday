@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
 
     public void ReportTemporary()
     {
+        timer = maxTime;
         score += 10;
         ModifyScore();
 
@@ -65,11 +66,11 @@ public class GameManager : MonoBehaviour
 
             trueSite.text = "https://g1.globo.com";
             trueHeader.text = "";
-            trueNews.text = "";
+            trueNews.text = "(IMEP)";
 
-            fakeSite.text = "https://g1.globo.news";
+            fakeSite.text = "https://g1.globo.com";
             fakeHeader.text = "";
-            fakeNews.text = "";
+            fakeNews.text = "(Instituto Pamonha)";
         }
         else if(score == 20)
         {
@@ -178,13 +179,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void BackButton()
+    {
+        zoom.SetActive(false);
+    }
+
     public void Image1Pressed()
     {
         zoomSite.text = trueSite.text;
         zoomHeader.text = trueHeader.text;
         ZoomNews.text = trueNews.text;
 
-        zoom.SetActive(true);
+        //-zoom.SetActive(true);
     }
 
     public void Image2Pressed()
