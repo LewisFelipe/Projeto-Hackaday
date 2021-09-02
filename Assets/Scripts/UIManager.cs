@@ -33,7 +33,6 @@ public class UIManager : MonoBehaviour
     {
         configMenu.SetActive(true);
         canAnimate = true;
-        
     }
 
     public void ConfigWindowClose()

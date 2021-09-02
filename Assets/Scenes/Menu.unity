@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   configMenu: {fileID: 63717255}
-  canAnimate: 0
+  canAnimate: 1
 --- !u!1 &415622013
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,7 +990,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Sobre
+  m_Text: "Informa\xE7\xF5es"
 --- !u!222 &732621216
 CanvasRenderer:
   m_ObjectHideFlags: 0

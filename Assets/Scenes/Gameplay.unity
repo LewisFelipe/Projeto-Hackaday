@@ -1349,6 +1349,10 @@ MonoBehaviour:
   - {fileID: 188757892}
   - {fileID: 922080737}
   - {fileID: 1932287930}
+  button:
+  - {fileID: 188757891}
+  - {fileID: 922080736}
+  - {fileID: 415515922}
   images:
   - {fileID: 21300000, guid: bed6b3eefcb5133458610b30ec3f4ad1, type: 3}
   - {fileID: 21300000, guid: 03cc6a6b72385b144a3e732c05f3117e, type: 3}
