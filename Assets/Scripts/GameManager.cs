@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] zoom;
 
+    public Animator anim;
+    public GameObject rightAnswerObject;
+
     public Text trueSite, fakeSite, trueHeader, fakeHeader, trueNews, fakeNews, zoomSite1, zoomSite2, zoomSite3, zoomHeader1, zoomHeader2, zoomHeader3, zoomNews1, zoomNews2, zoomNews3; //Temporary
 
     void TickTimer()
@@ -52,11 +55,20 @@ public class GameManager : MonoBehaviour
         fakeNews.text = "Circula nas redes sociais um vídeo de um homem, que veste um jaleco de profissional de saúde, que afirma que os adjuvantes de vacinas para a Covid-19 podem causar Alzheimer e fibromialgia.";
     }
 
+    public void SetRightFalse()
+    {
+        rightAnswerObject.SetActive(false);
+    }
+
     public void ReportTemporary()
     {
         timer = maxTime;
         score += 10;
         ModifyScore();
+
+        rightAnswerObject.SetActive(true);
+        anim.Play("RightAnswerAnim");
+        Invoke("SetRightFalse", 0.5f);
 
         foreach(GameObject element in zoom)
         {
