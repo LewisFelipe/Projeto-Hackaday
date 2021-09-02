@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject zoom;
 
-    public Text trueSite, fakeSite, zoomSite, trueHeader, fakeHeader, zoomHeader, trueNews, fakeNews, ZoomNews; //Temporary
+    public Text trueSite, fakeSite, trueHeader, fakeHeader, trueNews, fakeNews, zoomSite1, zoomSite2, zoomSite3, zoomHeader1, zoomHeader2, zoomHeader3, zoomNews1, zoomNews2, zoomNews3; //Temporary
 
     void TickTimer()
     {
@@ -44,12 +44,12 @@ public class GameManager : MonoBehaviour
         imageHolders[2].sprite = images[0];
 
         trueSite.text = "https://g1.globo.com";
-        trueHeader.text = "";
-        trueNews.text = "";
+        trueHeader.text = "É #FAKE que substâncias presentes em vacinas para a Covid-19 podem causar Alzheimer e fibromialgia";
+        trueNews.text = "Circula nas redes sociais um vídeo de um homem, que veste um jaleco de profissional de saúde, que afirma que os adjuvantes de vacinas para a Covid-19 podem causar Alzheimer e fibromialgia.";
 
         fakeSite.text = "https://g1.globo.news";
-        fakeHeader.text = "";
-        fakeNews.text = "";
+        fakeHeader.text = "Substâncias presentes em vacinas para a Covid-19 podem causar Alzheimer e fibromialgia.";
+        fakeNews.text = "Circula nas redes sociais um vídeo de um homem, que veste um jaleco de profissional de saúde, que afirma que os adjuvantes de vacinas para a Covid-19 podem causar Alzheimer e fibromialgia.";
     }
 
     public void ReportTemporary()
@@ -62,16 +62,26 @@ public class GameManager : MonoBehaviour
 
         if(score == 10)
         {
-            imageHolders[0].sprite = images[0];
-            imageHolders[1].sprite = images[0];
+            imageHolders[0].sprite = images[2];
+            imageHolders[1].sprite = images[2];
 
-            trueSite.text = "https://g1.globo.com";
-            trueHeader.text = "";
-            trueNews.text = "(Ministério da Saúde)";
+            trueHeader.color = Color.white;
+            trueHeader.fontSize = 14;
+            trueNews.color = Color.white;
+            fakeHeader.color = Color.white;
+            fakeHeader.fontSize = 14;
+            fakeNews.color = Color.white;
+            zoomHeader.color = Color.white;
+            zoomHeader.fontSize = 14;
+            zoomNews.color = Color.white;
 
-            fakeSite.text = "https://g1.globo.com";
-            fakeHeader.text = "";
-            fakeNews.text = "(Instituto Pamonha)";
+            trueSite.text = "https://noticias.uol.com.br";
+            trueHeader.text = "Aceitação da vacina é insuficiente!";
+            trueNews.text = "Brasileiros confiam na vacina, mas aceitação é insuficiente para imunidade(Ministério da Saúde)";
+
+            fakeSite.text = "https://noticias.uol.com.br";
+            fakeHeader.text = "Aceitação da vacina está em alta";
+            fakeNews.text = "Brasileiros confiam na vacina e a aceitação é mais que suficiente para imunidade(Instituto Pamonha)";
         }
         else if(score == 20)
         {
@@ -169,7 +179,10 @@ public class GameManager : MonoBehaviour
     public void BackButton()
     {
         button[selected].Select();
-        zoom.SetActive(false);
+        foreach(GameObject element in zoom)
+        {
+            element.SetActive(false);
+        }
     }
 
     public void Image1Pressed()
@@ -180,7 +193,7 @@ public class GameManager : MonoBehaviour
 
         zoomSite.text = trueSite.text;
         zoomHeader.text = trueHeader.text;
-        ZoomNews.text = trueNews.text;
+        zoomNews.text = trueNews.text;
 
         zoom.SetActive(true);
     }
@@ -193,7 +206,7 @@ public class GameManager : MonoBehaviour
 
         zoomSite.text = fakeSite.text;
         zoomHeader.text = fakeHeader.text;
-        ZoomNews.text = fakeNews.text;
+        zoomNews.text = fakeNews.text;
 
         zoom.SetActive(true);
     }
