@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     public Animator anim;
     public GameObject answerObject;
+    public GameObject wrongAnswerObj;
     int whitchZoomed = 0;
     public Text trueSite, fakeSite, trueHeader, fakeHeader, trueNews, fakeNews, zoomSite1, zoomSite2, zoomSite3, zoomHeader1, zoomHeader2, zoomHeader3, zoomNews1, zoomNews2, zoomNews3; //Temporary
 
@@ -55,6 +57,32 @@ public class GameManager : MonoBehaviour
         fakeNews.text = "Circula nas redes sociais um vídeo de um homem, que veste um jaleco de profissional de saúde, que afirma que os adjuvantes de vacinas para a Covid-19 podem causar Alzheimer e fibromialgia.";
     }
 
+    public void SetAnimObjFalse()
+    {
+        answerObject.SetActive(false);
+    }
+
+    public void SetAnimObjTrue()
+    {
+        answerObject.SetActive(true);
+    }
+   
+
+    public void RightAnswer()
+    {
+        SetAnimObjTrue();
+        anim.Play("AnswerAnim");
+        Invoke("SetAnimObjFalse", 0.5f);
+    }
+
+    public void WrongAnswer()
+    {
+        SetAnimObjTrue();
+        anim.Play("WrongAnswer");
+        Invoke("SetAnimObjFalse", 0.5f);
+    }
+
+
     public void ReportTemporary()
     {
         timer = maxTime;
@@ -67,8 +95,9 @@ public class GameManager : MonoBehaviour
         }
 
         if(score == 10)
-        {   
-            anim.Play("AnswerAnim");
+        {
+
+            RightAnswer();
 
             whitchZoomed = 1;
 
@@ -85,7 +114,7 @@ public class GameManager : MonoBehaviour
         }
         else if(score == 30)
         {
-            anim.Play("AnswerAnim");
+            RightAnswer();
 
             whitchZoomed = 1;
 
@@ -102,7 +131,7 @@ public class GameManager : MonoBehaviour
         }
         else if(score == 20)
         {
-            anim.Play("AnswerAnim");
+            RightAnswer();
 
             whitchZoomed = 2;
 
@@ -119,7 +148,10 @@ public class GameManager : MonoBehaviour
         }
         else if(score == 40)
         {
-            anim.Play("WrongAnswer");
+            bool isOver = false;
+
+            WrongAnswer();
+            isOver = true;
 
             whitchZoomed = 2;
 
@@ -133,6 +165,12 @@ public class GameManager : MonoBehaviour
             fakeSite.text = "https://g1.globo.news";
             fakeHeader.text = "";
             fakeNews.text = "";
+
+            if (isOver == true)
+            {
+                Invoke("GameOverScene", 0.5f);
+            }
+
         }
         else if(score == 50)
         {
@@ -187,6 +225,11 @@ public class GameManager : MonoBehaviour
             fakeHeader.text = "";
             fakeNews.text = "";
         }
+    }
+
+    public void GameOverScene()
+    {
+        SceneManager.LoadScene(2);
     }
 
     public void BackButton()

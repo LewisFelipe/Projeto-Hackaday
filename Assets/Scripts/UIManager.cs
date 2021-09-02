@@ -20,7 +20,6 @@ public class UIManager : MonoBehaviour
         infoMenu1 = GameObject.FindGameObjectWithTag("Info1");
         infoMenu1.SetActive(false);
     }
-
     public void GameStart()
     {
         SceneManager.LoadScene(1);
