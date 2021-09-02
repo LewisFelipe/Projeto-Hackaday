@@ -4,24 +4,18 @@ using UnityEngine.UI;
 using UnityEngine;
 
 public class Sites : MonoBehaviour
-{/*
-    private Sites Instance;
-    public Sites Singleton
+{
+    public const int PAIRS = 2;
+    private static Sites Instance;
+    public static Sites Singleton
     {
         get
         {
             if(Instance == null)
-            {
-                instance = FindObjectOfType<Sites>();
-            }
+                Instance = FindObjectOfType<Sites>();
             return Instance;
         }
     }
-    public int quantityImagePairs;
-    public Image[,] noticias;
-
-    void Start()
-    {
-        noticias = new Image[quantityImagePairs, 2]();
-    }*/
+    public int quantitieImagePairs;
+    public Sprite[] images;
 }
