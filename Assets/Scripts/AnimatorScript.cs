@@ -16,10 +16,13 @@ public class AnimatorScript : MonoBehaviour
     
     void Update()
     {
-        if (uiManager.canAnimate == true)
+        if (uiManager.canAnimateConfig)
         {
             anim.Play("AnimConfig");
         }
-        
+        else if(uiManager.canAnimateAbout)
+        {
+            anim.Play("AnimAbout");
+        }
     }
 }

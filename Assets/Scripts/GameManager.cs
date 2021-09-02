@@ -16,8 +16,8 @@ public class GameManager : MonoBehaviour
     public GameObject[] zoom;
 
     public Animator anim;
-    public GameObject rightAnswerObject;
-
+    public GameObject answerObject;
+    int whitchZoomed = 0;
     public Text trueSite, fakeSite, trueHeader, fakeHeader, trueNews, fakeNews, zoomSite1, zoomSite2, zoomSite3, zoomHeader1, zoomHeader2, zoomHeader3, zoomNews1, zoomNews2, zoomNews3; //Temporary
 
     void TickTimer()
@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
 
     void ModifyScore()
     {
-        lblScore.text = ("Score: " + score.ToString());
+        lblScore.text = ("Fakes: " + score.ToString());
     }
     
     void StartGame()
@@ -50,14 +50,9 @@ public class GameManager : MonoBehaviour
         trueHeader.text = "É #FAKE que substâncias presentes em vacinas para a Covid-19 podem causar Alzheimer e fibromialgia";
         trueNews.text = "Circula nas redes sociais um vídeo de um homem, que veste um jaleco de profissional de saúde, que afirma que os adjuvantes de vacinas para a Covid-19 podem causar Alzheimer e fibromialgia.";
 
-        fakeSite.text = "https://g1.globo.news";
+        fakeSite.text = "https://g1.gl00bo.news";
         fakeHeader.text = "Substâncias presentes em vacinas para a Covid-19 podem causar Alzheimer e fibromialgia.";
         fakeNews.text = "Circula nas redes sociais um vídeo de um homem, que veste um jaleco de profissional de saúde, que afirma que os adjuvantes de vacinas para a Covid-19 podem causar Alzheimer e fibromialgia.";
-    }
-
-    public void SetRightFalse()
-    {
-        rightAnswerObject.SetActive(false);
     }
 
     public void ReportTemporary()
@@ -66,40 +61,34 @@ public class GameManager : MonoBehaviour
         score += 10;
         ModifyScore();
 
-        rightAnswerObject.SetActive(true);
-        anim.Play("RightAnswerAnim");
-        Invoke("SetRightFalse", 0.5f);
-
         foreach(GameObject element in zoom)
         {
             element.SetActive(false);
         }
 
         if(score == 10)
-        {
+        {   
+            anim.Play("AnswerAnim");
+
+            whitchZoomed = 1;
+
             imageHolders[0].sprite = images[2];
             imageHolders[1].sprite = images[2];
 
-            trueHeader.color = Color.white;
-            trueHeader.fontSize = 14;
-            trueNews.color = Color.white;
-            fakeHeader.color = Color.white;
-            fakeHeader.fontSize = 14;
-            fakeNews.color = Color.white;
-            zoomHeader1.color = Color.white;
-            zoomHeader1.fontSize = 14;
-            zoomNews1.color = Color.white;
-
             trueSite.text = "https://noticias.uol.com.br";
             trueHeader.text = "Aceitação da vacina é insuficiente!";
-            trueNews.text = "Brasileiros confiam na vacina, mas aceitação é insuficiente para imunidade(Ministério da Saúde)";
+            trueNews.text = "Brasileiros confiam na vacina, mas aceitação é insuficiente para imunidade(Ministério da Saúde).";
 
             fakeSite.text = "https://noticias.uol.com.br";
-            fakeHeader.text = "Aceitação da vacina está em alta";
-            fakeNews.text = "Brasileiros confiam na vacina e a aceitação é mais que suficiente para imunidade(Instituto Pamonha)";
+            fakeHeader.text = "Aceitação da vacina está em alta!";
+            fakeNews.text = "Brasileiros confiam na vacina e a aceitação é mais que suficiente para imunidade(Instituto Pamonha).";
         }
         else if(score == 20)
         {
+            anim.Play("AnswerAnim");
+
+            whitchZoomed = 2;
+
             imageHolders[0].sprite = images[1];
             imageHolders[1].sprite = images[1];
 
@@ -113,21 +102,29 @@ public class GameManager : MonoBehaviour
         }
         else if(score == 30)
         {
+            anim.Play("AnswerAnim");
+
+            whitchZoomed = 1;
+
             imageHolders[0].sprite = images[2];
             imageHolders[1].sprite = images[2];
 
-            trueSite.text = "https://g1.globo.com";
-            trueHeader.text = "";
-            trueNews.text = "";
+            trueSite.text = "https://cnnbrasil.com";
+            trueHeader.text = "Covid-19: agosto foi o mês com mortes de Brasil";
+            trueNews.text = "Com o avanço da vacinação, as mortes diminuiram, ou seja, não tome vacina!";
 
-            fakeSite.text = "https://g1.globo.news";
-            fakeHeader.text = "";
-            fakeNews.text = "";
+            fakeSite.text = "https://cnnbrasil.com.br";
+            fakeHeader.text = "Covid-19: agosto foi o mês com o menor número de casos e mortes no Brasil!";
+            fakeNews.text = "Segundo levantamento da CNN, foram 24.043 mortes e 859.015 infecções confirmadas pela doença no país no oitavo mês do ano.";
         }
         else if(score == 40)
         {
-            imageHolders[0].sprite = images[2];
-            imageHolders[1].sprite = images[3];
+            anim.Play("WrongAnswer");
+
+            whitchZoomed = 2;
+
+            imageHolders[0].sprite = images[1];
+            imageHolders[1].sprite = images[1];
 
             trueSite.text = "https://g1.globo.com";
             trueHeader.text = "";
@@ -139,8 +136,9 @@ public class GameManager : MonoBehaviour
         }
         else if(score == 50)
         {
-            imageHolders[0].sprite = images[0];
-            imageHolders[1].sprite = images[0];
+
+            imageHolders[0].sprite = images[3];
+            imageHolders[1].sprite = images[3];
 
             trueSite.text = "https://g1.globo.com";
             trueHeader.text = "";
@@ -210,7 +208,15 @@ public class GameManager : MonoBehaviour
         zoomHeader1.text = trueHeader.text;
         zoomNews1.text = trueNews.text;
 
-        zoom[0].SetActive(true);
+        zoomSite2.text = trueSite.text;
+        zoomHeader2.text = trueHeader.text;
+        zoomNews2.text = trueNews.text;
+
+        zoomSite3.text = trueSite.text;
+        zoomHeader3.text = trueHeader.text;
+        zoomNews3.text = trueNews.text;
+
+        zoom[whitchZoomed].SetActive(true);
     }
 
     public void Image2Pressed()
@@ -223,7 +229,15 @@ public class GameManager : MonoBehaviour
         zoomHeader1.text = fakeHeader.text;
         zoomNews1.text = fakeNews.text;
 
-        zoom[0].SetActive(true);
+        zoomSite2.text = fakeSite.text;
+        zoomHeader2.text = fakeHeader.text;
+        zoomNews2.text = fakeNews.text;
+
+        zoomSite3.text = fakeSite.text;
+        zoomHeader3.text = fakeHeader.text;
+        zoomNews3.text = fakeNews.text;
+
+        zoom[whitchZoomed].SetActive(true);
     }
 
     void Start()
@@ -237,13 +251,13 @@ public class GameManager : MonoBehaviour
     {
         TickTimer();
 
-        /*if(zoom.activeSelf)
+        if(zoom[0].activeSelf || zoom[1].activeSelf || zoom[2].activeSelf)
         {
             button[2].interactable = true;
         }
         else
         {
             button[2].interactable = false;
-        }*/
+        }
     }
 }

@@ -5,23 +5,28 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    public GameObject configMenu;
+    GameObject configMenu, infoMenu;
 
-    public bool canAnimate = false;
+    public bool canAnimateConfig = false, canAnimateAbout = false;
 
     private void Start()
     {
         configMenu = GameObject.FindGameObjectWithTag("Config");
+        configMenu.SetActive(false);
+
+        infoMenu = GameObject.FindGameObjectWithTag("Info");
+        infoMenu.SetActive(false);
     }
 
     public void GameStart()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 
     public void About()
     {
-        SceneManager.LoadScene(1);
+        infoMenu.SetActive(true);
+        canAnimateAbout = true;
     }
 
     public void BackToMainMenu()
@@ -32,7 +37,7 @@ public class UIManager : MonoBehaviour
     public void ConfigWindowOpen()
     {
         configMenu.SetActive(true);
-        canAnimate = true;
+        canAnimateConfig = true;
     }
 
     public void ConfigWindowClose()
