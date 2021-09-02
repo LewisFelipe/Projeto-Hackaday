@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     {
         if(timer > 0)
         {
+            timerInteger = (int)timer;
+            lblTimer.text = timerInteger.ToString();
             timer -= Time.deltaTime;
         }
         else
@@ -31,8 +33,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        timerInteger = (int)timer;
-        lblTimer.text = timerInteger.ToString();
         TickTimer();
     }
 }
