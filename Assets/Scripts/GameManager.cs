@@ -9,11 +9,16 @@ public class GameManager : MonoBehaviour
     int timerInteger = 0;
     float timer;
     public Text lblTimer;
+    public Image[] imageHolders;
+    public Sprite[] images;
 
     void TickTimer()
     {
-        timer -= Time.deltaTime;
-        if (timer <= 0)
+        if(timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
+        else
         {
             Debug.Log("Game Over");
         }

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    GameObject configMenu;
+    public GameObject configMenu;
 
     public bool canAnimate = false;
 

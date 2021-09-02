@@ -13,8 +13,7 @@ public class AnimatorScript : MonoBehaviour
     {
         anim = GetComponent<Animator>();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if (uiManager.canAnimate == true)
