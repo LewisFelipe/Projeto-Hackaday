@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     int whitchZoomed = 0;
     public Text trueSite, fakeSite, trueHeader, fakeHeader, trueNews, fakeNews, zoomSite1, zoomSite2, zoomSite3, zoomHeader1, zoomHeader2, zoomHeader3, zoomNews1, zoomNews2, zoomNews3; //Temporary
 
+    bool isOver = false;
+
     void TickTimer()
     {
         if(timer > 0)
@@ -96,7 +98,6 @@ public class GameManager : MonoBehaviour
 
         if(score == 10)
         {
-
             RightAnswer();
 
             whitchZoomed = 1;
@@ -128,10 +129,16 @@ public class GameManager : MonoBehaviour
             fakeSite.text = "https://g1.globo.news";
             fakeHeader.text = "";
             fakeNews.text = "";
+            
+            if (isOver)
+            {
+                Invoke("GameOverScene", 0.5f);
+            }
         }
         else if(score == 20)
         {
-            RightAnswer();
+            WrongAnswer();
+            isOver = true;
 
             whitchZoomed = 2;
 
@@ -145,14 +152,11 @@ public class GameManager : MonoBehaviour
             fakeSite.text = "https://cnnbrasil.com.br";
             fakeHeader.text = "Covid-19: agosto foi o mês com o menor número de casos e mortes no Brasil!";
             fakeNews.text = "Segundo levantamento da CNN, foram 24.043 mortes e 859.015 infecções confirmadas pela doença no país no oitavo mês do ano.";
+
+            
         }
         else if(score == 40)
         {
-            bool isOver = false;
-
-            WrongAnswer();
-            isOver = true;
-
             whitchZoomed = 2;
 
             imageHolders[0].sprite = images[1];
@@ -166,10 +170,7 @@ public class GameManager : MonoBehaviour
             fakeHeader.text = "";
             fakeNews.text = "";
 
-            if (isOver == true)
-            {
-                Invoke("GameOverScene", 0.5f);
-            }
+            
 
         }
         else if(score == 50)
